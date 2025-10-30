@@ -1,0 +1,16 @@
+{
+  "name": "review-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for quick review app",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "author": "YourName",
+  "license": "ISC"
+}
