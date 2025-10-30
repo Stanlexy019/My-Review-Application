@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product Details — QuickReview</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>QuickReview</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="feedback.html">Feedbacks</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="product-detail" class="product-detail">
+      <!-- product details loaded by script -->
+    </section>
+
+    <section class="leave-feedback">
+      <h3>Leave feedback</h3>
+      <form id="feedbackForm">
+        <input type="hidden" id="productId" />
+        <label>
+          Your name
+          <input id="name" type="text" required />
+        </label>
+        <label>
+          Rating
+          <select id="rating">
+            <option value="5">5 — Excellent</option>
+            <option value="4">4 — Very good</option>
+            <option value="3">3 — Good</option>
+            <option value="2">2 — Fair</option>
+            <option value="1">1 — Poor</option>
+          </select>
+        </label>
+        <label>
+          Message
+          <textarea id="message" rows="4" required></textarea>
+        </label>
+        <button type="submit">Send feedback</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">QuickReview demo</footer>
+  <script src="script.js"></script>
+</body>
+</html>
