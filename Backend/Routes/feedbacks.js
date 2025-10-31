@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Feedback = require('../models/Feedback');
-const Product = require('../models/Product');
+const Feedback = require('../Models/Feedback');
+const Product = require('../Models/Product');
 
 // GET /api/feedbacks
 router.get('/', async (req, res) => {

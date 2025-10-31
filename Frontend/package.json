@@ -7,10 +7,13 @@
     "start": "live-server --port=3000",
     "test": "echo \"No tests specified\" && exit 0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^5.1.0"
+  },
   "devDependencies": {
     "live-server": "^1.2.2"
   },
   "author": "YourName",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": []
 }

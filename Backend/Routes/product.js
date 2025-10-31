@@ -1,25 +1,38 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product');
+const Product = require('../Models/Product'); // fixed path (capital M)
 
-// GET /api/products
+// ✅ GET all products - /api/products
 router.get('/', async (req, res) => {
-  const list = await Product.find({});
-  res.json(list);
+  try {
+    const products = await Product.find({});
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error while fetching products' });
+  }
 });
 
-// GET /api/products/:id
+// ✅ GET single product by ID - /api/products/:id
 router.get('/:id', async (req, res) => {
-  const p = await Product.findById(req.params.id);
-  if(!p) return res.status(404).json({ message: 'Not found' });
-  res.json(p);
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product)
+      return res.status(404).json({ message: 'Product not found' });
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ message: 'Error retrieving product' });
+  }
 });
 
-// (Optional) create product - you can seed instead
+// ✅ POST create new product - /api/products
 router.post('/', async (req, res) => {
-  const p = new Product(req.body);
-  await p.save();
-  res.status(201).json(p);
+  try {
+    const newProduct = new Product(req.body);
+    await newProduct.save();
+    res.status(201).json(newProduct);
+  } catch (err) {
+    res.status(400).json({ message: 'Error creating product', error: err });
+  }
 });
 
 module.exports = router;
