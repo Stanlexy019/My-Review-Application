@@ -1,0 +1,47 @@
+# === MongoDB Database ===version: "3.8"
+
+services:
+  # === MongoDB Database ===
+  mongo:
+    image: mongo:6.0
+    container_name: mongo_db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: quickreview
+    volumes:
+      - mongo_data:/data/db
+
+  # === Backend (Node.js / Express) ===
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: review_backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/quickreview
+    depends_on:
+      - mongo
+    volumes:
+      - ./Backend:/app
+    command: sh -c "npm install && npm start"
+
+  # === Frontend (Static site served via Nginx) ===
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: review_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
